@@ -62,27 +62,6 @@ Qué hace `run_heatmap.sh` (resumen):
 - Lanza el binario `heatmap_demo` que genera `data/heatmap_output.txt`
 - Llama al script Python `python/visualize_heatmap.py` para generar `data/heatmap_visualization.png`
 
-También puedes hacerlo paso a paso:
-
-1) Compilar
-
-```bash
-mkdir -p build
-cd build
-cmake .. && make
-```
-
-2) Ejecutar demo
-
-```bash
-./heatmap_demo
-```
-
-3) Visualizar (desde la carpeta raíz)
-
-```bash
-python3 python/visualize_heatmap.py
-```
 
 ## Enfoque principal: ¿Cómo y para qué se usa el 2D Segment Tree en el demo?
 
@@ -94,8 +73,7 @@ Esta sección explica detalladamente el rol del 2D Segment Tree (`ArbolSegmentos
 
 - Actualizaciones (cómo se usa):
   - El demo realiza 2000 operaciones aleatorias: `arbol.actualizar(x, y, valor);`.
-  - Importante: en esta implementación `actualizar` es una asignación (set) — reemplaza el valor de la celda por `nuevo_valor` y actualiza los nodos del árbol para mantener las sumas. No suma un delta; si quieres comportamiento incremental hay que cambiar la semántica o añadir un método `sumar(x,y,delta)`.
-
+ 
 - Lectura / Exportación:
   - Para escribir el heatmap final, el demo recorre todas las posiciones (i, j) y usa `arbol.consulta(i, j, i, j)` para leer el valor puntual almacenado. Es decir, usa la consulta de rango pero con un rectángulo de un solo punto.
   - El archivo `data/heatmap_output.txt` es la matriz resultante que luego carga el script Python para visualizarla.
@@ -104,12 +82,6 @@ Esta sección explica detalladamente el rol del 2D Segment Tree (`ArbolSegmentos
   - Mostrar la API de un árbol de segmentos 2D: construcción, actualización puntual y consultas de rango.
   - Permitir actualizaciones y consultas asintóticamente eficientes (O(log n · log m)).
   - Aunque en el demo sólo se realizan actualizaciones puntuales y lecturas puntuales, la misma estructura sirve para consultas más generales de suma en rectángulos (por ejemplo sumar todos los valores en un subrectángulo) sin recorrer las celdas una a una.
-
-## Notas técnicas y recomendaciones
-
-- Semántica de `actualizar`: actualiza (set). Si necesitas sumas incrementaless, cambia la implementación o añade un método `sumar(x,y,delta)` que aplique un incremento y actualice el árbol en consecuencia.
-- El demo usa `consulta(i,j,i,j)` para leer puntos; si tu objetivo es usar el 2DST para consultas por rango, prueba llamadas con rangos más grandes, p. ej. `consulta(x1,y1,x2,y2)`.
-- `data/heatmap_output.txt` es una salida reproducible; si no quieres versionarla, considera añadirla a `.gitignore` (ya añadí `build/` al `.gitignore`).
 
 ## API resumida de `ArbolSegmentos2D`
 
@@ -136,9 +108,3 @@ ArbolSegmentos2D arbol(matriz);
 arbol.actualizar(10, 20, 5); // set
 long long v = arbol.consulta(10,20,10,20); // leer punto
 ```
-
-## Licencia
-
-Uso educativo y de investigación.
-
-
