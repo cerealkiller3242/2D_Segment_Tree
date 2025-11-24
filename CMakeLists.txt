@@ -6,7 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-file(GLOB SOURCES "src/*.cpp")
-
-add_executable(heatmap_demo src/heatmap_demo.cpp ${SOURCES})
-add_executable(main_demo main.cpp ${SOURCES})
+add_executable(heatmap_demo src/heatmap_demo.cpp src/TwoDim_Segment_Tree.cpp)

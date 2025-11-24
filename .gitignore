@@ -1,4 +1,23 @@
-# Prerequisites
+# Ignorar carpeta de compilación
+/build/
+build/
+
+# Archivos temporales y generados por CMake/Make
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+Makefile.cmake
+
+# Binarios y objetos
+*.o
+*.obj
+*.exe
+heatmap_demo
+
+# Editor / OS
+.DS_Store
+*.swp# Prerequisites
 *.d
 
 # Compiled Object files
@@ -6,7 +25,10 @@
 *.lo
 *.o
 *.obj
-.idea
+*.idea
+*.png
+*.build
+
 
 # Precompiled Headers
 *.gch
