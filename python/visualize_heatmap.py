@@ -4,8 +4,8 @@ matplotlib.use('Agg')  # Backend sin interfaz gráfica
 import matplotlib.pyplot as plt
 
 # Ruta del archivo generado por C++
-DATA_PATH = "../data/heatmap_output.txt"
-OUTPUT_PATH = "../data/heatmap_visualization.png"
+DATA_PATH = "data/heatmap_output.txt"
+OUTPUT_PATH = "data/heatmap_visualization.png"
 
 def cargar_heatmap(path):
     return np.loadtxt(path)
